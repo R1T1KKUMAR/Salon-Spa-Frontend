@@ -12,7 +12,7 @@ const OwnerCustomization = () => {
     description: '',
     discount: '',
     validUntil: '',
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#cf3f1f',
     textColor: '#ffffff'
   });
   const [newAnnouncement, setNewAnnouncement] = useState({
@@ -30,11 +30,12 @@ const OwnerCustomization = () => {
 
   useEffect(() => {
     fetchConfig();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchConfig = async () => {
     try {
-      const res = await axios.get(${process.env.REACT_APP_API_URL || ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}'}/homePageConfig');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/homePageConfig`);
       console.log('Fetched config:', res.data);
       setConfig(res.data);
     } catch (error) {
@@ -64,7 +65,7 @@ const OwnerCustomization = () => {
       discount: "20%",
       validUntil: "2025-12-31",
       isActive: true,
-      backgroundColor: "#ff6b6b",
+      backgroundColor: "#cf3f1f",
       textColor: "#ffffff"
     }],
     announcements: [],
@@ -103,9 +104,9 @@ const OwnerCustomization = () => {
       isVisible: true
     },
     theme: {
-      primaryColor: "#ff6b6b",
-      secondaryColor: "#4ecdc4",
-      accentColor: "#45b7d1",
+      primaryColor: "#cf3f1f",
+      secondaryColor: "#26292f",
+      accentColor: "#a32e12",
       fontFamily: "Inter, sans-serif"
     },
     lastUpdated: new Date().toISOString(),
@@ -125,7 +126,7 @@ const OwnerCustomization = () => {
       console.log('Saving config:', updatedConfig);
       
       // Use PUT to update the entire homePageConfig object
-      await axios.put(${process.env.REACT_APP_API_URL || ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}'}/homePageConfig', updatedConfig);
+      await axios.put(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/homePageConfig`, updatedConfig);
       
       setConfig(updatedConfig);
       alert('Configuration saved successfully!');
@@ -170,7 +171,7 @@ const OwnerCustomization = () => {
       description: '',
       discount: '',
       validUntil: '',
-      backgroundColor: '#ff6b6b',
+      backgroundColor: '#cf3f1f',
       textColor: '#ffffff'
     });
   };

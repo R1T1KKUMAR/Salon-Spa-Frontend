@@ -78,7 +78,7 @@ const Header = () => {
           
           {isAuthenticated ? (
             <>
-              {user.role === 'user' && (
+              {(user.role === 'user' || user.role === 'customer') && (
                 <Link to="/book" onClick={closeMobileMenu}>Book</Link>
               )}
               
@@ -143,7 +143,7 @@ const Header = () => {
                     <Link to="/profile" onClick={closeMobileMenu} className="dropdown-item">
                       👤 Profile
                     </Link>
-                    {user.role === 'user' && (
+                    {(user.role === 'user' || user.role === 'customer') && (
                       <Link to="/my-appointments" onClick={closeMobileMenu} className="dropdown-item">
                         📅 My Appointments
                       </Link>

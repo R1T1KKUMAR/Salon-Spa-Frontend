@@ -101,7 +101,7 @@ body::after {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(45deg, #e39a2d, #2b1538);
   border-radius: 4px;
 }
 
@@ -173,7 +173,7 @@ body::after {
 
 /* Professional Button Styles */
 .btn-primary {
-  background: linear-gradient(45deg, var(--primary-color), #ee5a52);
+  background: linear-gradient(45deg, var(--primary-color), #b96f14);
   border: none;
   color: white;
   padding: 12px 28px;
@@ -190,7 +190,7 @@ body::after {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
-  background: linear-gradient(45deg, #ee5a52, var(--primary-color));
+  background: linear-gradient(45deg, #b96f14, var(--primary-color));
 }
 
 .btn-secondary {
@@ -277,7 +277,7 @@ body::after {
 
 .form-textarea:focus {
   outline: none;
-  border-color: #ff6b6b;
+  border-color: #e39a2d;
   box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
@@ -286,7 +286,7 @@ body::after {
   width: 40px;
   height: 40px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #ff6b6b;
+  border-top: 4px solid #e39a2d;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 20px auto;
@@ -335,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(45deg, #e39a2d, #2b1538);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

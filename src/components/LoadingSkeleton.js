@@ -12,11 +12,7 @@ const LoadingSkeleton = ({ type = 'default', count = 1, className = '' }) => {
     overflow: 'hidden'
   };
 
-  const darkModeStyle = {
-    background: 'linear-gradient(90deg, rgba(26, 32, 44, 0.4) 25%, rgba(45, 55, 72, 0.6) 50%, rgba(26, 32, 44, 0.4) 75%)',
-    backgroundSize: '200% 100%',
-    animation: 'loadingShimmer 1.5s infinite'
-  };
+  // Dark-mode shimmer is applied via CSS (data-theme); base style below covers light mode.
 
   // Default skeleton
   const DefaultSkeleton = () => (

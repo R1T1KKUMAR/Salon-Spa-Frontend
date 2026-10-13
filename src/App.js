@@ -25,6 +25,7 @@ import './styles/glassmorphism.css';
 import './styles/animations.css';
 import './styles/typography.css';
 import './styles/forms.css';
+import './styles/luxe.css';
 
 function App() {
   return (

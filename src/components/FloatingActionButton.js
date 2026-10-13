@@ -48,19 +48,19 @@ const FloatingActionButton = () => {
       icon: '📞',
       label: 'Call Us',
       action: () => window.open('tel:+1234567890', '_self'),
-      color: '#4ecdc4'
+      color: '#26292f'
     },
     {
       icon: '💬',
       label: 'Chat',
       action: () => navigate('/contact'),
-      color: '#45b7d1'
+      color: '#26292f'
     },
     {
       icon: '📍',
       label: 'Location',
       action: () => window.open('https://maps.google.com', '_blank'),
-      color: '#f39c12'
+      color: '#26292f'
     }
   ];
 
@@ -139,12 +139,12 @@ const FloatingActionButton = () => {
             border: 'none',
             background: 'rgba(255, 255, 255, 0.2)',
             backdropFilter: 'blur(20px)',
-            color: '#ff6b6b',
+            color: '#a32e12',
             fontSize: '16px',
             cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)',
-            boxShadow: '0 8px 32px rgba(255, 107, 107, 0.2)'
+            boxShadow: '0 8px 32px rgba(207, 63, 31, 0.35)'
           }}
           title={isExpanded ? 'Close Menu' : 'Quick Actions'}
         >
@@ -160,12 +160,12 @@ const FloatingActionButton = () => {
             height: '60px',
             borderRadius: '50%',
             border: 'none',
-            background: 'linear-gradient(45deg, #ff6b6b, #ee5a52)',
-            color: 'white',
+            background: '#cf3f1f',
+            color: '#ffffff',
             fontSize: '24px',
             cursor: 'pointer',
             backdropFilter: 'blur(20px)',
-            boxShadow: '0 12px 40px rgba(255, 107, 107, 0.4)',
+            boxShadow: '0 12px 40px rgba(207, 63, 31, 0.45)',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             position: 'relative',
             overflow: 'hidden'
@@ -177,7 +177,7 @@ const FloatingActionButton = () => {
           }}
           onMouseLeave={(e) => {
             e.target.style.transform = 'scale(1)';
-            e.target.style.boxShadow = '0 12px 40px rgba(255, 107, 107, 0.4)';
+            e.target.style.boxShadow = '0 12px 40px rgba(207, 63, 31, 0.45)';
           }}
         >
           {isAuthenticated ? '📅' : '🚀'}

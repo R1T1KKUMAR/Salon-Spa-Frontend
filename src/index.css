@@ -17,18 +17,18 @@
 
 /* Root Variables for Theme System */
 :root {
-  --primary-color: #ff6b6b;
-  --secondary-color: #4ecdc4;
-  --accent-color: #45b7d1;
+  --primary-color: #e39a2d;
+  --secondary-color: #2b1538;
+  --accent-color: #b3402e;
   --success-color: #2ecc71;
   --warning-color: #f39c12;
   --error-color: #e74c3c;
   --info-color: #3498db;
   
   /* Color Variations */
-  --primary-dark: #ee5a52;
-  --secondary-dark: #26c6da;
-  --accent-dark: #42a5f5;
+  --primary-dark: #b96f14;
+  --secondary-dark: #1e0e27;
+  --accent-dark: #93301f;
   --primary-light: rgba(255, 107, 107, 0.1);
   --secondary-light: rgba(78, 205, 196, 0.1);
   --accent-light: rgba(69, 183, 209, 0.1);
@@ -404,7 +404,7 @@ input:focus, textarea:focus, select:focus {
 
 /* Professional Links */
 a {
-  color: #ff6b6b;
+  color: #e39a2d;
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
@@ -422,7 +422,7 @@ a::after {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(45deg, #e39a2d, #2b1538);
   transition: width 0.3s ease;
 }
 
@@ -471,7 +471,7 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(45deg, #e39a2d, #2b1538);
   border-radius: 4px;
   transition: background 0.3s ease;
 }
@@ -612,5 +612,5 @@ p {
 [data-theme="dark"] .form-group select:focus,
 [data-theme="dark"] .form-group textarea:focus {
   background: rgba(45, 55, 72, 1);
-  border-color: #ff6b6b;
+  border-color: #e39a2d;
 }

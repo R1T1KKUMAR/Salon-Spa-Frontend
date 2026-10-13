@@ -81,7 +81,7 @@
   font-weight: var(--font-black);
   line-height: var(--leading-none);
   letter-spacing: var(--tracking-tight);
-  background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+  background: linear-gradient(135deg, #e39a2d 0%, #2b1538 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -250,7 +250,7 @@
   font-weight: var(--font-black);
   line-height: var(--leading-none);
   letter-spacing: var(--tracking-tight);
-  background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+  background: linear-gradient(135deg, #e39a2d 0%, #2b1538 50%, #b3402e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -267,7 +267,7 @@
   transform: translateX(-50%);
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(90deg, #e39a2d, #2b1538);
   border-radius: 2px;
 }
 
@@ -291,7 +291,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(90deg, #e39a2d, #2b1538);
   border-radius: 2px;
 }
 

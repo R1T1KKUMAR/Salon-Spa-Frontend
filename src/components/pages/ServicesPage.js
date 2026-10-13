@@ -4,53 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './ServicesPage.css';
 
-const serviceIcons = [
-  '💇‍♂️', // Men's Haircut
-  '💇‍♀️', // Women's Haircut
-  '👶',   // Kids Haircut
-  '🧴',   // Hair Wash & Blow Dry
-  '💫',   // Hair Styling
-  '🎨',   // Hair Coloring
-  '✨',   // Highlights & Balayage
-  '🌿',   // Keratin Treatment
-  '💆‍♀️', // Hair Spa & Scalp Treatment
-  '🍓',   // Fruit Facial
-  '👑',   // Gold Facial
-  '💎',   // Diamond Facial
-  '💧',   // HydraFacial
-  '🧼',   // Deep Cleanup
-  '🌟',   // Chemical Peel
-  '💅',   // Classic Manicure
-  '🦶',   // Classic Pedicure
-  '✨',   // Spa Manicure & Pedicure
-  '💎',   // Nail Extensions
-  '🎨',   // Nail Art
-  '💪',   // Swedish Massage
-  '🔥',   // Deep Tissue Massage
-  '🌸',   // Aromatherapy Massage
-  '🧖‍♀️', // Body Scrub & Polish
-  '🌿',   // Body Wrap
-  '💨',   // Steam Bath
-  '🔥',   // Sauna
-  '🛁',   // Jacuzzi
-  '💑',   // Couple Spa Package
-  '💄',   // Party Makeup
-  '👰‍♀️', // Bridal Makeup
-  '✨',   // Airbrush Makeup
-  '👗',   // Saree Draping
-  '🦵',   // Full Body Waxing
-  '💪',   // Arms & Legs Waxing
-  '🌊',   // Bikini Waxing
-  '👁️',   // Eyebrow Threading
-  '👄',   // Upper Lip Threading
-  '👁️',   // Eyelash Extensions
-  '🖋️',   // Eyebrow Microblading
-  '🌺',   // Mehendi Design
-  '💎',   // Ear Piercing
-  '👰‍♀️', // Pre-Bridal Package
-  '🤵‍♂️', // Pre-Groom Package
-];
-
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,6 +18,12 @@ const ServicesPage = () => {
       navigate('/login');
     }
   };
+
+  const grouped = services.reduce((acc, s) => {
+    const cat = s.category || 'House rituals';
+    (acc[cat] = acc[cat] || []).push(s);
+    return acc;
+  }, {});
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -81,39 +40,39 @@ const ServicesPage = () => {
   }, []);
 
   return (
-    <div className="services-container">
-      <h1>Our Services</h1>
+    <div className="services-container animate-page-enter">
+      <div className="eyebrow">Spec sheet</div>
+      <h1>Services & specs</h1>
+      <p className="lede">Every job lists its minutes and its rupees. Spec it, then book a chair.</p>
       {loading ? (
-        <div className="loading">Loading services...</div>
+        <div className="loading">Reading the rate card…</div>
       ) : error ? (
         <div className="error">{error}</div>
       ) : (
-        <div className="service-list">
-          {services.length === 0 ? (
-            <p>No services available.</p>
-          ) : (
-            services.map((service, idx) => (
-              <div key={service.id || service._id} className="service-card">
-                <div style={{ fontSize: '2.5rem', marginBottom: 12 }}>
-                  {serviceIcons[idx % serviceIcons.length]}
-                </div>
-                <h2>{service.name}</h2>
-                <div className="service-description" style={{ marginBottom: 10 }}>
-                  {service.description || 'No description available.'}
-                </div>
-                <div className="service-details">
-                  <span className="duration">⏱ {service.duration} min</span>
-                  <span className="price">₹{service.price}</span>
-                </div>
-                <button
-                  className="book-button"
-                  onClick={handleBookNow}
-                >
-                  {isAuthenticated ? 'Book Now' : 'Login to Book'}
-                </button>
+        <div className="rate-groups">
+          {Object.entries(grouped).map(([cat, items]) => (
+            <section key={cat} className="rate-group">
+              <h2 className="rate-group-title">{cat}</h2>
+              <div className="rate-list">
+                {items.map((service) => (
+                  <article key={service.id || service._id} className="rate-card">
+                    <div className="rate-row">
+                      <h3 className="rate-name">{service.name}</h3>
+                      <span className="leader" aria-hidden="true"></span>
+                      <span className="rate-price">₹{service.price}</span>
+                    </div>
+                    <p className="rate-desc">{service.description || 'Ask at the chair.'}</p>
+                    <div className="rate-meta">
+                      <span className="rate-mins">{service.duration} min</span>
+                      <button className="book-button rate-book" onClick={handleBookNow}>
+                        {isAuthenticated ? 'Book this' : 'Login to book'}
+                      </button>
+                    </div>
+                  </article>
+                ))}
               </div>
-            ))
-          )}
+            </section>
+          ))}
         </div>
       )}
     </div>

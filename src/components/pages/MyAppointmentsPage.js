@@ -29,7 +29,7 @@ const MyAppointmentsPage = () => {
       try {
         // Fetch all appointments first, then filter on client side
         // This is needed because JSON Server doesn't have proper user auth
-        const res = await axios.get(${process.env.REACT_APP_API_URL || ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}'}/appointments');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/appointments`);
         
         // Filter appointments for this specific user
         const userAppointments = res.data.filter(app => 
@@ -79,7 +79,7 @@ const MyAppointmentsPage = () => {
     }
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      await axios.patch(`${process.env.REACT_APP_API_URL || ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}'}/appointments/${activeAppId}`, { 
+      await axios.patch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/appointments/${activeAppId}`, { 
         status: 'cancelled', 
         cancellationReason: cancelReason,
         cancelledBy: 'customer',
@@ -110,7 +110,7 @@ const MyAppointmentsPage = () => {
       return;
     }
     try {
-      await axios.patch(`${process.env.REACT_APP_API_URL || ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}'}/appointments/${activeAppId}`, { status: 'completed', feedback: feedbackText, stars: feedbackStars });
+      await axios.patch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/appointments/${activeAppId}`, { status: 'completed', feedback: feedbackText, stars: feedbackStars });
       setAppointments((prev) => prev.map(app => app.id === activeAppId ? { ...app, status: 'completed', feedback: feedbackText, stars: feedbackStars } : app));
       setShowFeedbackModal(false);
     } catch (err) {
@@ -121,8 +121,9 @@ const MyAppointmentsPage = () => {
 
 
   return (
-    <div className="appointments-page">
-      <h1>My Appointments</h1>
+    <div className="appointments-page animate-page-enter">
+      <div className="eyebrow">Your tokens</div>
+      <h1>Booked chairs</h1>
       <div className="page-actions">
         <button
           onClick={() => {
@@ -138,21 +139,23 @@ const MyAppointmentsPage = () => {
       {appointments.length > 0 ? (
         <div className="appointments-grid">
           {appointments.map((app, index) => (
-            <div 
-              key={app.id || app._id} 
-              className={`appointment-card ${index === 0 ? 'latest-booking' : ''}`}
+            <div
+              key={app.id || app._id}
+              className={`token appointment-card ${index === 0 ? 'latest-booking' : ''}`}
             >
               {index === 0 && (
                 <div className="latest-badge">
-                  Latest Booking
+                  Newest token
                 </div>
               )}
+
+              <div className="token-no">Token {String(app.id || app._id || '').slice(-6).toUpperCase()} · {app.date}</div>
               
               <div className="appointment-details">
                 <h3>{app.serviceName || (app.service && app.service.name)}</h3>
                 <p><strong>Date:</strong> {app.date ? new Date(app.date).toLocaleDateString() : ''}</p>
                 <p><strong>Time Slot:</strong> {app.slot}</p>
-                <p><strong>Status:</strong> <span className={`status status-${app.status}`}>{app.status}</span></p>
+                <p><strong>Status:</strong> <span className={`stamp stamp-${app.status}`}>{app.status}</span></p>
                 {app.price && (
                   <p><strong>Price:</strong> ₹{app.price}</p>
                 )}
@@ -196,23 +199,27 @@ const MyAppointmentsPage = () => {
                 </div>
               )}
 
+              {/* Tear line + stub */}
+              <div className="token-perforation" aria-hidden="true"></div>
+              <div className="token-stub">
               {/* Action Buttons */}
               {app.status === 'confirmed' && (
                 <div className="appointment-actions">
-                  <button 
-                    onClick={() => openCancelModal(app.id)} 
+                  <button
+                    onClick={() => openCancelModal(app.id)}
                     className="btn-cancel"
                   >
-                    Cancel Appointment
+                    Cancel token
                   </button>
-                  <button 
-                    onClick={() => openFeedbackModal(app.id)} 
+                  <button
+                    onClick={() => openFeedbackModal(app.id)}
                     className="btn-complete"
                   >
-                    Mark as Completed
+                    Mark done
                   </button>
                 </div>
               )}
+              </div>
             </div>
           ))}
         </div>

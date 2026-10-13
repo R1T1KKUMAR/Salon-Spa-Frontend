@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './OwnerDashboard.css';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 // Star icon for feedback
 const Star = ({ filled }) => (
   <span className={filled ? 'star-filled' : 'star-empty'}>★</span>
@@ -29,9 +31,9 @@ const OwnerDashboard = () => {
     setLoading(true);
     try {
       const [appsRes, servRes, usersRes] = await Promise.all([
-        axios.get('http://localhost:5000/appointments'),
-        axios.get('http://localhost:5000/services'),
-        axios.get('http://localhost:5000/users'),
+        axios.get(API_URL + '/appointments'),
+        axios.get(API_URL + '/services'),
+        axios.get(API_URL + '/users'),
       ]);
       setAppointments(appsRes.data.filter(app => app.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))); // Filter out empty objects and sort by latest first
       setServices(servRes.data);
@@ -50,7 +52,7 @@ const OwnerDashboard = () => {
   const handleAddService = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/services', {
+      await axios.post(API_URL + '/services', {
         ...serviceForm,
         price: Number(serviceForm.price),
         duration: Number(serviceForm.duration),
@@ -77,7 +79,7 @@ const OwnerDashboard = () => {
   const handleUpdateService = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/services/${editServiceId}`, {
+      await axios.patch(`${API_URL}/services/${editServiceId}`, {
         ...serviceForm,
         price: Number(serviceForm.price),
         duration: Number(serviceForm.duration),
@@ -94,7 +96,7 @@ const OwnerDashboard = () => {
   const handleDeleteService = async (id) => {
     if (!window.confirm('Are you sure you want to delete this service?')) return;
     try {
-      await axios.delete(`http://localhost:5000/services/${id}`);
+      await axios.delete(`${API_URL}/services/${id}`);
       fetchData();
     } catch {
       alert('Failed to delete service.');
@@ -112,7 +114,7 @@ const OwnerDashboard = () => {
     
     try {
       // Add updated timestamp when status changes
-      await axios.patch(`http://localhost:5000/appointments/${id}`, { 
+      await axios.patch(`${API_URL}/appointments/${id}`, { 
         status,
         updatedAt: new Date().toISOString()
       });
@@ -131,7 +133,7 @@ const OwnerDashboard = () => {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     
     try {
-      await axios.patch(`http://localhost:5000/appointments/${activeAppId}`, {
+      await axios.patch(`${API_URL}/appointments/${activeAppId}`, {
         status: 'cancelled',
         cancellationReason: cancelReason,
         cancelledBy: 'owner',
@@ -165,10 +167,11 @@ const OwnerDashboard = () => {
   if (loading) return <div className="loading">Loading...</div>;
 
   return (
-    <div className="owner-dashboard">
-      <h2>Owner Dashboard</h2>
+    <div className="owner-dashboard animate-page-enter">
+      <div className="eyebrow">Shop floor</div>
+      <h2>Today on the floor</h2>
       
-      <h3>All Appointments</h3>
+      <h3>Tokens on the board</h3>
       
       {/* Service Ratings Section */}
       <div className="service-ratings-section">
@@ -176,7 +179,6 @@ const OwnerDashboard = () => {
         <div className="service-ratings-grid">
           {services.map(service => {
             const avg = getServiceRating(service.id || service._id);
-            const feedbacks = getServiceFeedbacks(service.id || service._id);
             return (
               <div key={service.id || service._id} className="service-rating-card">
                 <div className="service-name">{service.name}</div>
@@ -304,7 +306,7 @@ const OwnerDashboard = () => {
       </div>
 
       {/* Services Management Section */}
-      <h3>Manage Services</h3>
+      <h3>Rate card</h3>
       <button 
         onClick={() => { setShowServiceForm(true); setEditServiceId(null); setServiceForm({ name: '', price: '', duration: '', description: '' }); }} 
         className="add-service-btn"

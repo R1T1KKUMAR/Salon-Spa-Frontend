@@ -30,24 +30,24 @@ const Login = () => {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
-				background: 'linear-gradient(120deg, #f8fafc 60%, #ffe5e5 100%)',
+				background: 'linear-gradient(120deg, #f6f6f4 60%, #e7edf2 100%)',
 			}}>
 				<div className="auth-box" style={{
-					boxShadow: '0 4px 24px #ff6b6b22',
+					boxShadow: '0 4px 24px #26292f22',
 					borderRadius: 12,
 					padding: '1.3rem 1.2rem',
 					maxWidth: 350,
 					width: '100%',
 					background: 'rgba(255,255,255,0.98)',
 					position: 'relative',
-					border: '1px solid #ffe5e5',
+					border: '1px solid #d9dde2',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
 				}}>
 				<div style={{ textAlign: 'center', marginBottom: 18 }}>
-					  {/* <img src="/favicon.ico" alt="logo" style={{ width: 48, height: 48, borderRadius: 12, marginBottom: 6, boxShadow: '0 2px 8px #ff6b6b22' }} /> */}
-					<h2 style={{ color: '#ff6b6b', margin: 0, fontWeight: 800, fontSize: 28, letterSpacing: 1 }}>✨ Luxe Beauty Salon</h2>
+					  {/* <img src="/favicon.ico" alt="logo" style={{ width: 48, height: 48, borderRadius: 12, marginBottom: 6, boxShadow: '0 2px 8px #26292f22' }} /> */}
+					<h2 style={{ color: '#26292f', margin: 0, fontWeight: 800, fontSize: 28, letterSpacing: 1 }}>✨ Luxe Beauty Salon</h2>
 					<div style={{ color: '#888', fontSize: 15, marginTop: 2 }}>Welcome back! Please login to continue.</div>
 				</div>
 				{error && <div className="error-message">{error}</div>}
@@ -80,7 +80,7 @@ const Login = () => {
 					</div>
 					<button type="submit" className="auth-button" style={{ fontWeight: 700, fontSize: 17, marginTop: 8 }}>Login</button>
 					<div style={{ marginTop: 12, textAlign: 'center' }}>
-						<Link to="/forgot-password" style={{ color: '#ff6b6b', textDecoration: 'underline', fontSize: 14 }}>
+						<Link to="/forgot-password" style={{ color: '#a32e12', textDecoration: 'underline', fontSize: 14 }}>
 							Forgot Password?
 						</Link>
 					</div>
@@ -91,7 +91,7 @@ const Login = () => {
 					<button style={{ background: '#fff', border: '1px solid #eee', borderRadius: 6, padding: '0.4rem 1.2rem', color: '#333', fontWeight: 600, cursor: 'not-allowed', opacity: 0.6 }} disabled>Facebook</button>
 				</div>
 				<div style={{ textAlign: 'center', marginTop: 10, fontSize: 15 }}>
-					Don't have an account? <Link to="/register" style={{ color: '#ff6b6b', fontWeight: 600, textDecoration: 'none' }}>Register</Link>
+					Don't have an account? <Link to="/register" style={{ color: '#a32e12', fontWeight: 600, textDecoration: 'none' }}>Register</Link>
 				</div>
 			</div>
 		</div>

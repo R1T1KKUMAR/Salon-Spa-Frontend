@@ -74,20 +74,20 @@
 [data-theme="dark"] input:focus,
 [data-theme="dark"] select:focus,
 [data-theme="dark"] textarea:focus {
-  border-color: #ff6b6b !important; /* Primary color for focus */
+  border-color: #e39a2d !important; /* Primary color for focus */
   box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3) !important;
   background: #374151 !important; /* Slightly lighter on focus */
 }
 
 /* Button overrides with high contrast */
 [data-theme="dark"] .btn-primary {
-  background: #ff6b6b !important;
+  background: #e39a2d !important;
   color: #ffffff !important; /* White text for maximum contrast */
-  border-color: #ff6b6b !important;
+  border-color: #e39a2d !important;
 }
 
 [data-theme="dark"] .btn-primary:hover {
-  background: #ee5a52 !important;
+  background: #b96f14 !important;
   color: #ffffff !important;
 }
 
@@ -307,13 +307,13 @@
 [data-theme="dark"] .time-slot-item.available:hover {
   background: #4a5568 !important;
   color: #ffffff !important;
-  border-color: #ff6b6b !important;
+  border-color: #e39a2d !important;
 }
 
 [data-theme="dark"] .time-slot-item.selected {
-  background: #ff6b6b !important;
+  background: #e39a2d !important;
   color: #ffffff !important;
-  border-color: #ff6b6b !important;
+  border-color: #e39a2d !important;
 }
 
 [data-theme="dark"] .time-slot-item.unavailable {
@@ -363,7 +363,7 @@
 }
 
 [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background: #ff6b6b;
+  background: #e39a2d;
 }
 
 /* Light mode contrast fixes */

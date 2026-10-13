@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import LoadingSkeleton from '../LoadingSkeleton';
 import StarRating from '../StarRating';
@@ -12,11 +12,12 @@ import '../../styles/typography.css';
 const HomePage = () => {
   const [config, setConfig] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchConfig();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleBookNow = () => {
@@ -31,7 +32,7 @@ const HomePage = () => {
 
   const fetchConfig = async () => {
     try {
-      const res = await axios.get(${process.env.REACT_APP_API_URL || ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}'}/homePageConfig');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/homePageConfig`);
       console.log('HomePage - Fetched config:', res.data);
       setConfig(res.data);
     } catch (error) {
@@ -58,7 +59,7 @@ const HomePage = () => {
       description: "Get 20% OFF on all spa services! Use code SUMMER20",
       discount: "20%",
       isActive: true,
-      backgroundColor: "#ff6b6b",
+      backgroundColor: "#cf3f1f",
       textColor: "#ffffff"
     }],
     announcements: [],
@@ -90,9 +91,9 @@ const HomePage = () => {
       isVisible: true
     },
     theme: {
-      primaryColor: "#ff6b6b",
-      secondaryColor: "#4ecdc4",
-      accentColor: "#45b7d1"
+      primaryColor: "#cf3f1f",
+      secondaryColor: "#26292f",
+      accentColor: "#a32e12"
     }
   });
 
@@ -122,7 +123,7 @@ const HomePage = () => {
   const activeAnnouncements = config?.announcements?.filter(ann => ann?.isActive) || [];
 
   return (
-    <div className="home-container animate-page-enter" style={{'--primary-color': config?.theme?.primaryColor || '#ff6b6b'}}>
+    <div className="home-container animate-page-enter">
 
       {/* Dynamic Announcements */}
       {activeAnnouncements.length > 0 && (
@@ -155,7 +156,7 @@ const HomePage = () => {
               className="offers-banner-inner" 
               style={{
                 display: 'inline-block',
-                background: offer?.backgroundColor || '#ff6b6b',
+                background: offer?.backgroundColor || '#cf3f1f',
                 color: offer?.textColor || '#ffffff',
                 padding: '0.8rem 2.5rem',
                 borderRadius: '30px',
@@ -174,21 +175,28 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Dynamic Hero Section */}
+      {/* Hero: the salon at lamplight */}
       {config.heroSection?.isVisible && (
-        <section className="hero glass-hero animate-fade-in-up">
-          <h1 className="hero-title animate-bounce-in">
+        <section className="hero-band">
+          <div className="eyebrow eyebrow-light">Bareilly · by appointment</div>
+          <h1 className="hero-title">
             <span className="animated-greeting">{config.heroSection.title}</span>
           </h1>
-          <p className="text-lead animate-fade-in-up" style={{animationDelay: '0.3s'}}>{config.heroSection.subtitle}</p>
-          <button onClick={handleBookNow} className="glass-button animate-pulse-glow hover-bounce btn-press">
+          <p className="text-lead">{config.heroSection.subtitle}</p>
+          <button onClick={handleBookNow} className="glass-button">
             <span className="btn-text">{isAuthenticated ? (config.heroSection.ctaText || 'Book Now') : 'Get Started'}</span>
           </button>
+          <div className="hero-ledger">
+            <span>Mon–Fri · 9–8</span>
+            <span>Sat · 9–6</span>
+            <span>Sun · 10–5</span>
+          </div>
         </section>
       )}
 
-      <section className="features animate-slide-in-left">
-        <h2 className="section-title animate-fade-in-up">Our Services</h2>
+      <section className="features section">
+        <div className="eyebrow">The crafts</div>
+        <h2 className="section-title">What the house does</h2>
         <div className="services-grid">
           <div className="service-card glass-service-card stagger-item hover-lift animate-float">
             <div className="service-icon">💇‍♀️</div>
@@ -213,8 +221,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="why-us animate-slide-in-right">
-        <h2 className="section-title animate-fade-in-up">Why Choose Us?</h2>
+      <section className="why-us section">
+        <div className="eyebrow">Why sit with us</div>
+        <h2 className="section-title">Three house rules</h2>
         <div className="benefits">
           <div className="benefit glass-floating stagger-item hover-scale">
             <h3 className="card-title">Professional Staff</h3>
@@ -236,7 +245,7 @@ const HomePage = () => {
         <section className="testimonials" style={{margin: '3rem 0'}}>
           <h2 style={{
             textAlign: 'center', 
-            color: config?.theme?.primaryColor || '#ff6b6b', 
+            color: config?.theme?.primaryColor || '#cf3f1f', 
             fontWeight: 700, 
             marginBottom: '2rem'
           }}>
@@ -269,7 +278,7 @@ const HomePage = () => {
                 <div style={{
                   marginTop: '1rem', 
                   fontWeight: 600, 
-                  color: config?.theme?.primaryColor || '#ff6b6b'
+                  color: config?.theme?.primaryColor || '#cf3f1f'
                 }}>
                   {review?.name || 'Anonymous'}
                 </div>
@@ -287,7 +296,7 @@ const HomePage = () => {
       {/* Contact Section */}
       {config?.contactInfo?.isVisible && (
         <section className="contact-info" style={{
-          background: config?.theme?.primaryColor || '#ff6b6b', 
+          background: config?.theme?.primaryColor || '#cf3f1f', 
           color: 'white', 
           textAlign: 'center', 
           padding: '3rem 2rem', 

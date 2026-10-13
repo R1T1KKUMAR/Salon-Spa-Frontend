@@ -211,7 +211,7 @@
   text-transform: uppercase;
   border: none;
   border-radius: 50px;
-  background: linear-gradient(45deg, var(--primary-color), #ee5a52);
+  background: linear-gradient(45deg, var(--primary-color), #b96f14);
   color: white;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,7 +237,7 @@
 .enhanced-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 40px rgba(255, 107, 107, 0.5);
-  background: linear-gradient(45deg, #ee5a52, var(--primary-color));
+  background: linear-gradient(45deg, #b96f14, var(--primary-color));
 }
 
 .enhanced-btn:active {
